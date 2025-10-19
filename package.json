@@ -1,0 +1,13 @@
+{
+  "name": "react-grid",
+  "version": "1.0.0",
+  "description": "refto:readme.md",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  }
+}
