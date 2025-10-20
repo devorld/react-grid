@@ -1,4 +1,6 @@
 import Image, { type ImageProps } from "next/image";
+import { Card } from "@repo/ui/card";
+import { Code } from "@repo/ui/code";
 import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
 
@@ -33,7 +35,7 @@ export default function Home() {
         />
         <ol>
           <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
+            Get started by editing <Code>apps/web/app/page.tsx</Code>
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
@@ -82,10 +84,9 @@ export default function Home() {
           />
           Examples
         </a>
-        <a
+        <Card
           href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
+          title="turborepo.com"
         >
           <Image
             aria-hidden
@@ -93,9 +94,9 @@ export default function Home() {
             alt="Globe icon"
             width={16}
             height={16}
+            className="align-middle"
           />
-          Go to turborepo.com →
-        </a>
+        </Card>
       </footer>
     </div>
   );

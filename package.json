@@ -1,7 +1,7 @@
 {
   "name": "react-grid",
   "version": "1.0.0",
-  "description": "refto:readme.md",
+  "description": "readme.md",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -17,6 +17,6 @@
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }
