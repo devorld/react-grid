@@ -24,6 +24,9 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <div className="flex items-center justify-center bg-blue-600 text-white text-3xl font-bold">
+          React Grid
+        </div>
         <ThemeImage
           className={styles.logo}
           srcLight="turborepo-dark.svg"
@@ -33,7 +36,7 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol>
+        <ol className="list-[disclosure-open]">
           <li>
             Get started by editing <Code>apps/web/app/page.tsx</Code>
           </li>

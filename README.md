@@ -5,14 +5,20 @@
 - About
     - Repository
         - Git Hosting: GitHub
-        - Monorepo: Turborepo
         - CI/CD: GitHub Actions
         - UI Hosting: Vercel
+        - Monorepo: Turborepo
+        - Bundler: Turbopack
+        - Package Manager: pnpm
     - UI
         - Structure: FSD
         - Language: TypeScript
         - Framework: React + NextSJ
         - Styling: TailwindCSS
+    - DOCS
+        - Language: TypeScript
+        - Framework: React + NextSJ
+        - Libs: Swagger
     - API
         - Language: Python
         - Framework: FastAPI
