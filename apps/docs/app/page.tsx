@@ -1,3 +1,5 @@
+import SwaggerUI from "swagger-ui-react";
+import "swagger-ui-react/swagger-ui.css"
 import Image, { type ImageProps } from "next/image";
 import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
@@ -66,6 +68,7 @@ export default function Home() {
         <Button appName="docs" className={styles.secondary}>
           Open alert
         </Button>
+        <SwaggerUI url="https://petstore.swagger.io/v2/swagger.json" />
       </main>
       <footer className={styles.footer}>
         <a

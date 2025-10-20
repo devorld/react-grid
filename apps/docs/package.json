@@ -22,7 +22,9 @@
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
+    "@types/swagger-ui-react": "^5.18.0",
     "eslint": "^9.34.0",
+    "swagger-ui-react": "^5.29.5",
     "typescript": "5.9.2"
   }
 }
