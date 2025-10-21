@@ -37,7 +37,11 @@
             4. vercel-deploy.yml
     - apps/
         - web/
-        - api/
+			- app 					<-- Next.js compatibility structure
+			- pages 				<-- keep empty App Router (Next.js)
+			- src 					<-- Feature-Sliced Design (FSD) structure
+		- api/
+		- docs/
 -->
 
 <ul>
