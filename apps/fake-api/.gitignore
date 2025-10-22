@@ -1,0 +1,16 @@
+# Environments
+.env
+
+# Vercel
+.vercel
+
+# Turbo
+.turbo
+
+# Dependencies
+node_modules
+
+# Distribution / packaging
+build
+dist
+out/

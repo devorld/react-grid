@@ -6,24 +6,36 @@
     - Repository
         - Git Hosting: GitHub
         - CI/CD: GitHub Actions
-        - UI Hosting: Vercel
+        - Hosting: Vercel
         - Monorepo: Turborepo
         - Bundler: Turbopack
         - Package Manager: pnpm
-    - UI
+    - WEB
         - Structure: FSD
         - Language: TypeScript
-        - Framework: React + NextSJ
-        - Styling: TailwindCSS
-    - DOCS
-        - Language: TypeScript
-        - Framework: React + NextSJ
-        - Libs: Swagger
+        - Framework: React + NextJS
+        - Styling: CSS Modules, TailwindCSS
+        - dev-port: `3001`
     - API
         - Language: Python
         - Framework: FastAPI
         - ORM: SQLAlchemy
+        - DB: PostgreSQL
         - Tests: Pytest
+        - dev-port: `3002`
+    - fake-API
+        - Language: TypeScript
+        - Framework: Express.js
+        - dev-port: `3003`
+    - DOCS
+        - Language: TypeScript
+        - Framework: React + NextSJ
+        - Libs: Swagger
+        - dev-port: `3005`
+    - BOT
+        - Language: Python
+        - Framework: FastAPI
+        - dev-port: `3009`
 
 ## File Structure
 
@@ -37,7 +49,13 @@
             4. vercel-deploy.yml
     - apps/
         - web/
+            - app/			<-- Next.js compatibility structure
+            - pages/		<-- keep empty App Router (Next.js)
+            - src/			<-- Feature-Sliced Design (FSD) structure
         - api/
+        - fake-api/
+        - docs/
+        - bot/
 -->
 
 <ul>
@@ -61,6 +79,9 @@
                 <ul>
                     <li>web/</li>
                     <li>api/</li>
+                    <li>fake-api/</li>
+                    <li>docs/</li>
+                    <li>bot/</li>
                 </ul>
             </li>
         </ul>
