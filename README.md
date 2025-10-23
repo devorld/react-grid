@@ -1,4 +1,19 @@
-# react-grid
+# Sandbox
+
+## React + Leaflet
+
+### Run
+
+1. `git clone https://github.com/devorld/react-grid.git GennadiiM`
+1. `cd GennadiiM`
+1. `pnpm install`
+1. `pnpm turbo run dev --filter web`
+1. http://localhost:3001/map
+1. click on map segments
+1. ???
+1. Offer to Gennadii M 😅
+
+---
 
 ## Technologies
 
