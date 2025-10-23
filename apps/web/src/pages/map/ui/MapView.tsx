@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MapContainer, WMSTileLayer, GeoJSON, useMapEvents, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import type { Layer, LeafletMouseEvent } from "leaflet";
+import type { GeoJSON as LeafletGeoJSON, PathOptions, Layer, LeafletMouseEvent } from "leaflet";
 import type { PopupData, WfsFeature, WfsResponse } from "../model/types";
+
+const MAP_STYLES = {
+  default: {color: "#3388ff", weight: 1, fillOpacity: 0.3} satisfies PathOptions,
+  highlight: {color: "#ff0000", weight: 2, fillOpacity: 0.5} satisfies PathOptions,
+};
 
 function MapView() {
   const [geojsonData, setGeojsonData] = useState<WfsResponse | null>(null);
   const [popupData, setPopupData] = useState<PopupData | null>(null);
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const geojsonRef = useRef<LeafletGeoJSON | null>(null);
 
   useEffect(() => {
     const loadWfsData = async () => {
@@ -28,10 +35,21 @@ function MapView() {
         if (target.closest(".leaflet-interactive")) return;
 
         setPopupData(null);
+        setSelectedRegion(null);
       },
     });
     return null;
   };
+
+  useEffect(() => {
+    if (geojsonRef.current) {
+      geojsonRef.current.setStyle((feature?: GeoJSON.Feature<GeoJSON.Geometry, { STATE_FIPS: string }>) =>
+        feature?.properties?.STATE_FIPS === selectedRegion
+          ? MAP_STYLES.highlight
+          : MAP_STYLES.default
+      )
+    }
+  }, [selectedRegion]);
 
   const onEachFeature = (feature: WfsFeature, layer: Layer) => {
     layer.on("click", (event: LeafletMouseEvent) => {
@@ -39,8 +57,18 @@ function MapView() {
         latlng: event.latlng,
         props: feature.properties,
       });
+
+      setSelectedRegion(feature?.properties?.STATE_FIPS);
     });
+
+    // noinspection SpellCheckingInspection
+    layer.on("popupclose", () => setSelectedRegion(null));
   };
+
+  const getRegionStyle = (feature?: GeoJSON.Feature<GeoJSON.Geometry, { STATE_FIPS: string }>) =>
+    feature?.properties?.STATE_FIPS === selectedRegion
+      ? MAP_STYLES.highlight
+      : MAP_STYLES.default;
 
   return (
     <main>
@@ -60,7 +88,12 @@ function MapView() {
         />
 
         {geojsonData && (
-          <GeoJSON data={geojsonData as GeoJSON.FeatureCollection} onEachFeature={onEachFeature} />
+          <GeoJSON
+            data={geojsonData as GeoJSON.FeatureCollection}
+            onEachFeature={onEachFeature}
+            ref={geojsonRef}
+            style={getRegionStyle}
+          />
         )}
 
         {popupData && (
