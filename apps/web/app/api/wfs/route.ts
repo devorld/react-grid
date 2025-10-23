@@ -8,7 +8,7 @@ export async function GET() {
     return new NextResponse(data, {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*" // temporary presentation solution, not for production
       },
     });
   } catch {
