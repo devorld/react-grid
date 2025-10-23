@@ -11,9 +11,7 @@ function MapView() {
 
   useEffect(() => {
     const loadWfsData = async () => {
-      const res = await fetch(
-        "https://ahocevar.com/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=topp:states&outputFormat=application/json&srsname=EPSG:4326"
-      );
+      const res = await fetch("/api/wfs");
       const data = (await res.json()) as WfsResponse;
       setGeojsonData(data);
     };
