@@ -8,7 +8,11 @@ const MapView = dynamic(() => import("./MapView"), {
 });
 
 function MapPage() {
-  return <MapView />;
+  return (
+    <main>
+      <MapView />
+    </main>
+  );
 }
 
 export { MapPage };

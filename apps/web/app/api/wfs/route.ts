@@ -12,6 +12,6 @@ export async function GET() {
       },
     });
   } catch {
-    return NextResponse.json({ error: "Failed to fetch WFS" }, { status: 500 });
+    return NextResponse.json({error: "Failed to load WFS"}, {status: 500});
   }
 }

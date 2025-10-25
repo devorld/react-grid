@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { CRS } from "leaflet";
 import { MapContainer, WMSTileLayer, GeoJSON, useMapEvents, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -43,8 +44,8 @@ function MapView() {
 
   useEffect(() => {
     if (geojsonRef.current) {
-      geojsonRef.current.setStyle((feature?: GeoJSON.Feature<GeoJSON.Geometry, { STATE_FIPS: string }>) =>
-        feature?.properties?.STATE_FIPS === selectedRegion
+      geojsonRef.current.setStyle((feature?: GeoJSON.Feature<GeoJSON.Geometry, { FIPS_CNTRY: string }>) =>
+        feature?.properties?.FIPS_CNTRY === selectedRegion
           ? MAP_STYLES.highlight
           : MAP_STYLES.default
       )
@@ -58,54 +59,53 @@ function MapView() {
         props: feature.properties,
       });
 
-      setSelectedRegion(feature?.properties?.STATE_FIPS);
+      setSelectedRegion(feature?.properties?.FIPS_CNTRY);
     });
 
     // noinspection SpellCheckingInspection
     layer.on("popupclose", () => setSelectedRegion(null));
   };
 
-  const getRegionStyle = (feature?: GeoJSON.Feature<GeoJSON.Geometry, { STATE_FIPS: string }>) =>
-    feature?.properties?.STATE_FIPS === selectedRegion
+  const getRegionStyle = (feature?: GeoJSON.Feature<GeoJSON.Geometry, { FIPS_CNTRY: string }>) =>
+    feature?.properties?.FIPS_CNTRY === selectedRegion
       ? MAP_STYLES.highlight
       : MAP_STYLES.default;
 
   return (
-    <main>
-      <MapContainer
-        center={[39.5, -98.5]}
-        zoom={4}
-        style={{width: "100%", height: "100vh"}}
-      >
-        <ClickHandler />
+    <MapContainer
+      center={[55.75, 37.62]}
+      zoom={4}
+      style={{width: "100%", height: "100vh"}}
+    >
+      <ClickHandler />
 
-        <WMSTileLayer
-          url="https://ahocevar.com/geoserver/wms"
-          layers="topp:states"
-          format="image/png"
-          transparent
-          version="1.1.1"
+      <WMSTileLayer
+        url="/api/wms"
+        layers="world:world"
+        format="image/png"
+        version="1.3.0"
+        transparent
+        crs={CRS.EPSG4326}
+      />
+
+      {geojsonData && (
+        <GeoJSON
+          data={geojsonData as GeoJSON.FeatureCollection}
+          onEachFeature={onEachFeature}
+          ref={geojsonRef}
+          style={getRegionStyle}
         />
+      )}
 
-        {geojsonData && (
-          <GeoJSON
-            data={geojsonData as GeoJSON.FeatureCollection}
-            onEachFeature={onEachFeature}
-            ref={geojsonRef}
-            style={getRegionStyle}
-          />
-        )}
-
-        {popupData && (
-          <Popup key={`${popupData.latlng.lat}-${popupData.latlng.lng}`} position={popupData.latlng}>
-            <div>
-              <strong>{popupData.props.STATE_NAME}</strong> <br />
-              ID: {popupData.props.STATE_FIPS}
-            </div>
-          </Popup>
-        )}
-      </MapContainer>
-    </main>
+      {popupData && (
+        <Popup key={`${popupData.latlng.lat}-${popupData.latlng.lng}`} position={popupData.latlng}>
+          <div>
+            <strong>{popupData.props.CNTRY_NAME}</strong> <br />
+            ID: {popupData.props.FIPS_CNTRY}
+          </div>
+        </Popup>
+      )}
+    </MapContainer>
   );
 }
 

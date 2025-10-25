@@ -5,13 +5,13 @@
 ### Run
 
 1. `git clone https://github.com/devorld/react-grid.git GennadiiM`
-1. `cd GennadiiM`
-1. `pnpm install`
-1. `pnpm turbo run dev --filter web`
-1. http://localhost:3001/map
-1. click on map segments
-1. ???
-1. Offer to Gennadii M 😅
+2. `cd GennadiiM`
+3. `pnpm install`
+4. `pnpm turbo run dev --filter web`
+5. http://localhost:3001/map
+6. click on map segments
+7. ???
+8. Offer to Gennadii M 😅
 
 ---
 
