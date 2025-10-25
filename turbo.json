@@ -1,7 +1,7 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
-  "globalPassThroughEnv": ["FAKE_API_PORT"],
+  "globalPassThroughEnv": ["FAKE_API_PORT", "ZULU_URL", "ZULU_LOGIN", "ZULU_PASSWORD"],
   "tasks": {
     "build": {
       "dependsOn": [

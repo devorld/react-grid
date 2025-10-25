@@ -1,6 +1,6 @@
 interface WfsFeatureProperties {
-  STATE_NAME: string;
-  STATE_FIPS: string;
+  CNTRY_NAME: string;
+  FIPS_CNTRY: string;
   POPULATION?: number;
   AREA?: number;
 }
